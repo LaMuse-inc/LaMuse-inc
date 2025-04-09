@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LaMuse Inc. - Fashion to change the world, created by AI.</title>
+  <!-- ▼ 追加CSSはここで読み込んでください ▼ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    /* -----------------------------
+       Reset & Base Styles
+    ----------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --text-color: #1a1a1a;
+      --bg-color: #ffffff;
+      --accent-color: #333333;
+      --gray-light: #f7f7f7;
+      --gray-dark: #333333;
+      --gray-medium: #888888;
+      --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      --transition: all 0.4s ease;
+      --border-light: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    html, body {
+      font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.7;
+      scroll-behavior: smooth;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    /* -----------------------------
+       Typography
+    ----------------------------- */
+    h1, h2, h3, h4, h5 {
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+
+    /* -----------------------------
+       Animations
+    ----------------------------- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes borderFade {
+      from { width: 0; }
+      to { width: 40px; }
+    }
+
+    body {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    /* -----------------------------
+       Header & Navigation
+    ----------------------------- */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: var(--border-light);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Logo Styles */
+    .logo {
+      height: auto;
+      display: flex;
+      align-items: center;
+      padding: 0;
+      transition: var(--transition);
+      margin-right: 2rem;
+    }
+
+    .logo:hover {
+      opacity: 0.85;
+    }
+
+    .logo img {
+      width: 220px;
+      height: auto;
+      display: block;
+    }
+
+    /* Navigation Links */
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      position: relative;
+      padding-bottom: 4px;
+      font-weight: 400;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-color);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* -----------------------------
+       Hero Section
+    ----------------------------- */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom, rgba(245, 245, 245, 0.5), rgba(255, 255, 255, 1));
+      position: relative;
+      overflow: hidden;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+      background: transparent;
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 8vw, 4.8rem);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      color: var(--text-color);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      color: var(--text-color);
+      letter-spacing: 0.05em;
+    }
+
+    .cta-button, .contact-form button {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: var(--accent-color);
+      color: white;
+      text-decoration: none;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: 1px solid var(--accent-color);
+      cursor: pointer;
+    }
+
+    .cta-button:hover, .contact-form button:hover {
+      background: transparent;
+      color: var(--accent-color);
+    }
+
+    /* -----------------------------
+       Section Common Styles
+    ----------------------------- */
+    .section {
+      padding: 8rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-content {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.8rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 1px;
+      background: var(--accent-color);
+      animation: borderFade 1s ease-out forwards;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray-dark);
+      text-align: center;
+      margin-bottom: 4rem;
+      letter-spacing: 0.05em;
+      font-weight: 300;
+    }
+
+    .content-box {
+      background: white;
+      padding: 4rem;
+      border: var(--border-light);
+      box-shadow: var(--card-shadow);
+    }
+
+    /* 隙間調整用 */
+    .after-hero {
+      height: 4rem;
+    }
+
+    /* -----------------------------
+       Feature Cards
+    ----------------------------- */
+    .features-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 3rem;
+      gap: 2.5rem;
+    }
+
+    .feature-card {
+      flex: 1;
+      min-width: 250px;
+      padding: 2.5rem;
+      text-align: center;
+      background: white;
+      border: var(--border-light);
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-color);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1);
+    }
+
+    .feature-title {
+      margin-bottom: 1rem;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .feature-description {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--gray-dark);
+      font-weight: 300;
+    }
+
+    /* -----------------------------
+       Team Section
+    ----------------------------- */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .team-member {
+      text-align: center;
+      padding: 2.5rem;
+      background: white;
+      border: var(--border-light);
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-member::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+
+    .team-member:hover {
+      transform: translateY(-8px);
+    }
+
+    .team-member:hover::after {
+      transform: scaleX(1);
+    }
+
+    .team-member img {
+      max-width: 160px;
+      max-height: 160px;
+      width: auto;
+      height: auto;
+      border-radius: 50%;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--gray-light);
+      transition: var(--transition);
+      filter: grayscale(70%);
+    }
+
+    /* 画像サイズの個別調整 */
+    .team-member[data-member="kenichiro"] img {
+      max-width: 140px;
+      max-height: 140px;
+    }
+
+    .team-member:hover img {
+      filter: grayscale(0%);
+    }
+
+    .team-member h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .team-member p {
+      font-size: 0.9rem;
+      color: var(--gray-dark);
+      font-weight: 300;
+    }
+
+    /* チームメンバー説明文のスタイル追加 */
+    .member-description {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin-top: 1rem;
+      color: var(--gray-dark);
+      font-weight: 300;
+      text-align: left;
+    }
+
+    /* -----------------------------
+       CTA Section
+    ----------------------------- */
+    .cta-section {
+      background: var(--gray-light);
+      text-align: center;
+      padding: 7rem 2rem;
+    }
+
+    /* -----------------------------
+       Contact Form
+    ----------------------------- */
+    .contact-form {
+      max-width: 650px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 4rem;
+      background: white;
+      border: var(--border-light);
+      box-shadow: var(--card-shadow);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 1rem;
+      border: 1px solid var(--gray-light);
+      font-size: 0.95rem;
+      transition: var(--transition);
+      background: transparent;
+      font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
+      font-weight: 300;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.03);
+    }
+
+    /* フォーム送信ボタンの個別スタイル調整 */
+    .contact-form button {
+      padding: 1rem;
+      width: 100%;
+      font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
+    }
+
+    /* -----------------------------
+       Footer - 完全再構築
+    ----------------------------- */
+    .footer {
+      background: var(--text-color);
+      color: var(--bg-color);
+      padding: 5rem 2rem 3rem;
+    }
+
+    .footer-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+    }
+
+    .footer-section h4 {
+      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+      letter-spacing: 0.1em;
+      font-weight: 400;
+      color: white;
+    }
+
+    .footer-section h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    /* すべてのフッターリンク */
+    .footer-section a {
+      color: #888888 !important;
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      transition: var(--transition);
+      display: inline-block;
+      opacity: 1;
+    }
+
+    /* フッターの言語切り替えリンク */
+    .footer-section a[data-lang] {
+      color: #888888 !important;
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      transition: var(--transition);
+      display: none;
+      opacity: 0;
+    }
+
+    .footer-section a[data-lang].active {
+      display: inline-block;
+      opacity: 1;
+    }
+
+    /* ホバー効果 */
+    .footer-section a:hover,
+    .footer-section a[data-lang]:hover {
+      color: white !important;
+      padding-left: 5px;
+    }
+
+    /* コピーライト */
+    .copyright {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.85rem;
+      color: #888888;
+      letter-spacing: 0.02em;
+      font-weight: 300;
+    }
+
+    /* -----------------------------
+       Language Switcher
+    ----------------------------- */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      margin-left: 1.5rem;
+    }
+
+    .lang-btn {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--gray-medium);
+      cursor: pointer;
+      transition: var(--transition);
+      background: transparent;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lang-btn::before {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    .lang-btn.active {
+      color: var(--accent-color);
+      position: relative;
+    }
+
+    .lang-btn.active::before {
+      width: 100%;
+    }
+
+    .lang-btn:hover::before {
+      width: 100%;
+    }
+
+    .lang-btn:hover {
+      color: var(--accent-color);
+    }
+
+    /* Language visibility classes */
+    [data-lang] {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    [data-lang].active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    [data-lang="jp"].active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    [data-lang="en"].active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .inline-lang[data-lang] {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .inline-lang[data-lang].active {
+      display: inline;
+      opacity: 1;
+    }
+
+    /* -----------------------------
+       Responsive Design
+    ----------------------------- */
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section {
+        padding: 5rem 1.5rem;
+      }
+
+      .team-grid {
+        gap: 2rem;
+      }
+
+      .hero-content {
+        padding: 3rem 1.5rem;
+        width: 90%;
+      }
+
+      .footer {
+        padding: 4rem 1.5rem 2rem;
+      }
+
+      .content-box {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .features-grid {
+        flex-direction: column;
+      }
+
+      .feature-card {
+        width: 100%;
+        padding: 2rem;
+      }
+
+      .contact-form {
+        padding: 2.5rem 1.5rem;
+      }
+      
+      .team-member {
+        padding: 2rem;
+      }
+
+      .lang-switcher {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+    }
+
+    /* フェードイン/アウトエフェクト用のオーバーレイ */
+    .page-transition-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .page-transition-overlay.active {
+      opacity: 0.2;
+      pointer-events: auto;
+    }
+
+    /* ボタン共通スタイル */
+    .btn-ripple {
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+    
+    .btn-ripple:hover {
+      background-color: transparent !important;
+      color: var(--accent-color) !important;
+      border-color: var(--accent-color) !important;
+    }
+    
+    /* CTA Button スタイル */
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: var(--accent-color);
+      color: white;
+      text-decoration: none;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: 1px solid var(--accent-color);
+      cursor: pointer;
+    }
+
+    /* Contact Form ボタン */
+    .contact-form button {
+      padding: 1rem;
+      background: var(--accent-color);
+      color: white;
+      border: 1px solid var(--accent-color);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    // Smooth scrolling for anchor links with header offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const target = document.querySelector(this.getAttribute('href'));
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Parallax effect
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      document.querySelectorAll('.parallax').forEach(function(parallax) {
+        const speed = parallax.getAttribute('data-speed');
+        parallax.style.transform = 'translateY(' + (scrolled * speed) + 'px)';
+      });
+    });
+
+    // 改善されたリップルエフェクトのためのクリックイベント
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.btn-ripple').forEach(button => {
+        button.addEventListener('click', function(e) {
+          let x = e.clientX - e.target.getBoundingClientRect().left;
+          let y = e.clientY - e.target.getBoundingClientRect().top;
+          
+          let ripple = document.createElement('span');
+          ripple.style.cssText = `
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            pointer-events: none;
+            width: 0;
+            height: 0;
+            left: ${x}px;
+            top: ${y}px;
+            transform: translate(-50%, -50%);
+            animation: btn-ripple-effect 0.6s linear;
+          `;
+          
+          button.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 700);
+        });
+      });
+    });
+    
+    document.head.insertAdjacentHTML('beforeend', `
+      <style>
+        @keyframes btn-ripple-effect {
+          0% {
+            width: 0;
+            height: 0;
+            opacity: 0.5;
+          }
+          100% {
+            width: 500px;
+            height: 500px;
+            opacity: 0;
+          }
+        }
+      </style>
+    `);
+    
+    // 既存のリップルアニメーションを削除
+    document.querySelectorAll('.ripple').forEach(ripple => ripple.remove());
+
+    // Team メンバーのデータ
+    const team_image = [
+      { name: "Kenichiro Tsuru", role: "CEO", image: "team_image/KenichiroTsuru.jpg" },
+      { name: "Kousuke Ai", role: "CTO", image: "team_image/KousukeAi.png" },
+      { name: "Remikon", role: "Engineer", image: "team_image/remikon.webp" }
+    ];
+
+    // ページ読み込み時の初期状態を設定
+    document.addEventListener("DOMContentLoaded", function() {
+      // パーティクル初期化など
+    });
+
+    // パーティクル設定
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof particlesJS !== 'undefined') {
+        particlesJS("particles-js", {
+          "particles": {
+            "number": {
+              "value": 20,
+              "density": {
+                "enable": true,
+                "value_area": 1500
+              }
+            },
+            "color": {
+              "value": ["#cccccc"]
+            },
+            "shape": {
+              "type": ["circle"],
+              "stroke": {
+                "width": 0,
+                "color": "#000000"
+              }
+            },
+            "opacity": {
+              "value": 0.2,
+              "random": true,
+              "anim": {
+                "enable": true,
+                "speed": 0.3,
+                "opacity_min": 0.1,
+                "sync": false
+              }
+            },
+            "size": {
+              "value": 2,
+              "random": true,
+              "anim": {
+                "enable": true,
+                "speed": 0.5,
+                "size_min": 0.1,
+                "sync": false
+              }
+            },
+            "line_linked": {
+              "enable": true,
+              "distance": 200,
+              "color": "#cccccc",
+              "opacity": 0.2,
+              "width": 1
+            },
+            "move": {
+              "enable": true,
+              "speed": 0.5,
+              "direction": "none",
+              "random": true,
+              "straight": false,
+              "out_mode": "out",
+              "bounce": false,
+              "attract": {
+                "enable": false
+              }
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": true,
+                "mode": "grab"
+              },
+              "onclick": {
+                "enable": false
+              },
+              "resize": true
+            },
+            "modes": {
+              "grab": {
+                "distance": 200,
+                "line_linked": {
+                  "opacity": 0.3
+                }
+              }
+            }
+          },
+          "retina_detect": true
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <!-- ▼ HEADER / NAV -------------------------------------------- -->
+  <header class="header">
+    <div class="header-content">
+      <a href="#" class="logo">
+        <img src="images/LaMuse logo 2.png" alt="LaMuse Inc. Logo">
+      </a>
+      <nav class="nav-links">
+        <a href="#about" data-lang="jp" class="active">ABOUT</a>
+        <a href="#about" data-lang="en">ABOUT</a>
+        <a href="#team" data-lang="jp" class="active">TEAM</a>
+        <a href="#team" data-lang="en">TEAM</a>
+        <a href="#contact" data-lang="jp" class="active">CONTACT</a>
+        <a href="#contact" data-lang="en">CONTACT</a>
+        <a href="manifest.html" data-lang="jp" class="active">MANIFEST</a>
+        <a href="manifest.html" data-lang="en">MANIFEST</a>
+      </nav>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-switch-lang="jp">JP</button>
+        <span class="lang-divider">|</span>
+        <button class="lang-btn" data-switch-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero">
+    <div id="particles-js"></div>
+    <div class="hero-content">
+      <h1 class="hero-title active" data-lang="jp">Fashion to change the world,<br>created by AI.</h1>
+      <h1 class="hero-title" data-lang="en">Fashion to change the world,<br>created by AI.</h1>
+      
+      <p class="hero-subtitle active" data-lang="jp">新たなファッションの未来を共に創る。</p>
+      <p class="hero-subtitle" data-lang="en">Creating the future of fashion together.</p>
+      
+      <a href="#" class="cta-button btn-ripple active" data-lang="jp">Join Waiting List</a>
+      <a href="#" class="cta-button btn-ripple" data-lang="en">Join Waiting List</a>
+    </div>
+  </section>
+
+  <!-- ヒーローセクションの下に十分なスペースを確保しておく -->
+  <div class="after-hero"></div>
+
+  <!-- ========== ABOUT ========== -->
+  <section id="about" class="section">
+    <div class="section-content">
+      <h2 class="section-title">ABOUT</h2>
+      <p class="section-subtitle active" data-lang="jp">東京発、世界へ。AIとユーザーが創る次世代ファッション</p>
+      <p class="section-subtitle" data-lang="en">From Tokyo to the world. Next-gen fashion created by AI and users</p>
+      <div class="content-box">
+        <p style="text-align: center; margin-bottom: 2rem;" class="active" data-lang="jp">
+          LaMuseは東京発のサブカルチャーファッションを、AIによるデザイン生成とユーザー投票を通じて商品化。<br>
+          世界のファッションファンに向けて届ける、ユーザー参加型の新しいグローバル越境ECプラットフォームです。
+        </p>
+        <p style="text-align: center; margin-bottom: 2rem;" data-lang="en">
+          LaMuse commercializes Tokyo subculture fashion through AI design generation and user voting.<br>
+          A new global cross-border EC platform that delivers to fashion fans worldwide with user participation.
+        </p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3 class="feature-title active" data-lang="jp">AIデザイン生成</h3>
+            <h3 class="feature-title" data-lang="en">AI Design Generation</h3>
+            <p class="feature-description active" data-lang="jp">テキストや画像を基にAIがファッションデザイン案を自動生成。</p>
+            <p class="feature-description" data-lang="en">AI automatically generates fashion design proposals based on text and images.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3 class="feature-title active" data-lang="jp">コミュニティによる投票システム</h3>
+            <h3 class="feature-title" data-lang="en">User-driven Commercialization</h3>
+            <p class="feature-description active" data-lang="jp">ユーザーが生成したデザイン案をコミュニティ内で投票し、EC内で上位デザインを商品化・販売。</p>
+            <p class="feature-description" data-lang="en">Designs generated by users are voted on within the community, with top designs being commercialized and sold.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌏</div>
+            <h3 class="feature-title active" data-lang="jp">越境EC</h3>
+            <h3 class="feature-title" data-lang="en">Cross-border E-commerce</h3>
+            <p class="feature-description active" data-lang="jp">英語優先の多言語対応、複数通貨での表示、主要決済手段を導入し、海外配送にも対応。</p>
+            <p class="feature-description" data-lang="en">English-first multilingual support, multiple currency display, major payment methods, and international shipping.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TEAM ========== -->
+  <section id="team" class="section">
+    <div class="section-content">
+      <h2 class="section-title">TEAM</h2>
+      <p class="section-subtitle active" data-lang="jp">革新を追求するチーム</p>
+      <p class="section-subtitle" data-lang="en">A team pursuing innovation</p>
+      <div class="team-grid">
+        <div class="team-member" data-member="kenichiro">
+          <img src="team_image/KenichiroTsuru.png" alt="CEO Kenichiro Tsuru">
+          <h3>Kenichiro Tsuru</h3>
+          <p>CEO</p>
+          <p class="member-description active" data-lang="jp">
+            2022年、サレジオ工業高等専門学校に入学後、複数のベンチャー企業、AIスタートアップでインターンとして主に営業と開発業務に携わる。さらに、アパレルブランドでファッションモデルとしても活動し、ファッション業界での実践的な経験を積んでいる。
+          </p>
+          <p class="member-description" data-lang="en">
+            After entering Salesio Technical High School in 2022, he worked as an intern at multiple venture companies and AI startups, primarily in sales and development. Additionally, he has been active as a fashion model for apparel brands, gaining practical experience in the fashion industry.
+          </p>
+        </div>
+        <div class="team-member" data-member="kosuke">
+          <img src="team_image/KousukeAi.png" alt="CTO Kosuke Ai">
+          <h3>Kosuke Ai</h3>
+          <p>CTO</p>
+          <p class="member-description active" data-lang="jp">
+            2022年4月に法政大学に入学し、5月にデータ分析会社にPdMとして入社、ブロックチェーン分野における事業開発とシステム開発を経験する。その後も複数のプロジェクトでPMとしてシステム開発に関わり、AIやブロックチェーン分野におけるシステム開発・サービス開発の経験を持つ。
+          </p>
+          <p class="member-description" data-lang="en">
+            Enrolled at Hosei University in April 2022 and joined a data analysis company as a PdM in May, gaining experience in business development and system development in the blockchain field. He has since been involved in system development as a PM on multiple projects, with experience in system and service development in AI and blockchain fields.
+          </p>
+        </div>
+        <div class="team-member" data-member="remikon">
+          <img src="team_image/remikon.webp" alt="Engineer Remikon">
+          <h3>Remikon</h3>
+          <p>Engineer</p>
+          <p class="member-description active" data-lang="jp">
+            Unityエンジニアとして8年、AIエンジニアとして4年の経験を持つ。機械学習、強化学習、画像音声認識、自然言語処理、生成AIなどの技術や、Unity・C#を用いたソフトウェア開発やゲーム制作を得意としている。
+          </p>
+          <p class="member-description" data-lang="en">
+            Has 8 years of experience as a Unity engineer and 4 years as an AI engineer. Specializes in technologies such as machine learning, reinforcement learning, image and voice recognition, natural language processing, generative AI, as well as software development and game creation using Unity and C#.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="section">
+    <div class="section-content">
+      <h2 class="section-title">CONTACT</h2>
+      <p class="section-subtitle active" data-lang="jp">お問い合わせ・ご相談はこちらから</p>
+      <p class="section-subtitle" data-lang="en">Contact us for inquiries and consultations</p>
+      <form class="contact-form">
+        <input type="text" placeholder="お名前" data-placeholder-jp="お名前" data-placeholder-en="Name" required />
+        <input type="email" placeholder="メールアドレス" data-placeholder-jp="メールアドレス" data-placeholder-en="Email" required />
+        <textarea rows="5" placeholder="お問い合わせ内容" data-placeholder-jp="お問い合わせ内容" data-placeholder-en="Message"></textarea>
+        <button type="submit" class="btn-ripple active" data-lang="jp">送信する</button>
+        <button type="submit" class="btn-ripple" data-lang="en">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Social</h4>
+        <ul>
+          <li><a href="#">X</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 LaMuse Inc. All Rights Reserved. | 〒150-0002 東京都渋谷区渋谷３丁目２７−１
+    </div>
+  </footer>
+
+  <!-- パーティクルJSの読み込み -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <!-- 言語切り替え機能 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 言語切り替えボタンのイベントリスナー
+      const langButtons = document.querySelectorAll('.lang-btn');
+      
+      // ページにオーバーレイを追加
+      const overlay = document.createElement('div');
+      overlay.className = 'page-transition-overlay';
+      document.body.appendChild(overlay);
+      
+      langButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const targetLang = this.getAttribute('data-switch-lang');
+          
+          // トランジションエフェクト開始
+          overlay.classList.add('active');
+          
+          // すべての言語要素を非表示に準備
+          document.querySelectorAll('[data-lang].active').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(10px)';
+          });
+          
+          // 短い遅延後に言語を切り替え
+          setTimeout(() => {
+            switchLanguage(targetLang);
+            
+            // トランジション終了
+            setTimeout(() => {
+              overlay.classList.remove('active');
+              
+              // 新しい言語要素をフェードイン
+              document.querySelectorAll(`[data-lang="${targetLang}"].active`).forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+              });
+            }, 300);
+          }, 300);
+        });
+      });
+
+      // 言語切り替え関数
+      function switchLanguage(lang) {
+        // ボタンのアクティブ状態を切り替え
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.getAttribute('data-switch-lang') === lang) {
+            btn.classList.add('active');
+          }
+        });
+
+        // すべての言語要素を非表示
+        document.querySelectorAll('[data-lang]').forEach(el => {
+          el.classList.remove('active');
+        });
+
+        // 指定された言語の要素を表示
+        document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
+          el.classList.add('active');
+        });
+
+        // フォームのプレースホルダーを切り替え
+        document.querySelectorAll('input[data-placeholder-jp], textarea[data-placeholder-jp]').forEach(el => {
+          if (lang === 'jp') {
+            el.placeholder = el.getAttribute('data-placeholder-jp');
+          } else {
+            el.placeholder = el.getAttribute('data-placeholder-en');
+          }
+        });
+
+        // 言語設定をローカルストレージに保存
+        localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // ページロード時に保存された言語設定を適用
+      const savedLanguage = localStorage.getItem('selectedLanguage');
+      if (savedLanguage) {
+        switchLanguage(savedLanguage);
+        
+        // ページロード時のフェードイン
+        document.querySelectorAll(`[data-lang="${savedLanguage}"].active`).forEach(el => {
+          // 初期状態を設定
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(10px)';
+          
+          // 少し遅らせてフェードイン
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, 100);
+        });
+      } else {
+        // ブラウザの言語設定を取得してデフォルト言語を設定
+        const browserLang = navigator.language || navigator.userLanguage;
+        const defaultLang = browserLang.startsWith('ja') ? 'jp' : 'en';
+        
+        switchLanguage(defaultLang);
+        
+        // ページロード時のフェードイン
+        document.querySelectorAll(`[data-lang="${defaultLang}"].active`).forEach(el => {
+          // 初期状態を設定
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(10px)';
+          
+          // 少し遅らせてフェードイン
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, 100);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
